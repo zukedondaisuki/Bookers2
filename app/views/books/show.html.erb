@@ -21,8 +21,8 @@
        <td><%= link_to @showbook.title, book_path(@showbook) %></td>
        <td><%= @showbook.body %></td>
        <% if @showbook.user == current_user %>
-       <td><%= link_to "Edit", edit_book_path(@showbook),class:"btn btn-sm btn-success edit_book_28048" %></td>
-       <td><%= link_to "Destroy",book_path(@showbook), method: :delete,class:"btn btn-sm btn-danger destroy_book_28048" %></td>
+       <td><%= link_to "Edit", edit_book_path(@showbook),class:"btn btn-sm btn-success" %></td>
+       <td><%= link_to "Destroy",book_path(@showbook), method: :delete,class:"btn btn-sm btn-danger" %></td>
        <% end %>
       </tr>
      </tbody>
