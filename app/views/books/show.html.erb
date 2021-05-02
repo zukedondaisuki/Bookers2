@@ -34,6 +34,7 @@
           </p>
            <% end %>
        </td>
+       <td>コメント数：<%= @showbook.book_comments.count %></td>
        <% if @showbook.user == current_user %>
        <td><%= link_to "Edit", edit_book_path(@showbook),class:"btn btn-sm btn-success" %></td>
        <td><%= link_to "Destroy",book_path(@showbook), method: :delete,class:"btn btn-sm btn-danger" %></td>
@@ -41,8 +42,31 @@
       </tr>
      </tbody>
     </table>
-   </div>
 
+           <% @showbook.book_comments.each do |book_comment| %>
+           <%= link_to user_path(book_comment.user.id) do %>
+           <p><%= attachment_image_tag book_comment.user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg" %></p>
+           <%= book_comment.user.name %>
+           <% end %>
+           <%= book_comment.comment %>
+           <% if book_comment.user == current_user %>
+           <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete %>
+           <% end %>
+           <% end %>
+
+             <% if @showbook.errors.any? %>
+             <%= @showbook.errors.count %>error prohibited this obj from being saved:
+             <% @showbook.errors.full_messages.each do |message| %>
+             <%= message %>
+             <% end %>
+             <% end %>
+           <%= form_with(model:[@showbook, @book_comment], local: true) do |f| %>
+           <%= f.text_area :comment, rows:'5' %>
+           <%= f.submit "送信" %>
+           <% end %>
+
+
+   </div>
   </div>
 </div>
 
