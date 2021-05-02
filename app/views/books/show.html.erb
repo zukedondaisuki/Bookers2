@@ -17,13 +17,27 @@
         <% end %>
         <%= link_to @user.name, user_path(@user) %>
        </td>
-
        <td><%= link_to @showbook.title, book_path(@showbook) %></td>
        <td><%= @showbook.body %></td>
+       <td>
+          <% if @showbook.favorited_by?(current_user) %>
+          <p>
+           <%= link_to book_favorites_path(@showbook), method: :delete do %>
+           ♥<%= @showbook.favorites.count %>
+           <% end %>
+          </p>
+           <% else %>
+          <p>
+           <%= link_to book_favorites_path(@showbook), method: :post do %>
+           ♡<%= @showbook.favorites.count %>
+           <% end %>
+          </p>
+           <% end %>
+       </td>
        <% if @showbook.user == current_user %>
        <td><%= link_to "Edit", edit_book_path(@showbook),class:"btn btn-sm btn-success" %></td>
        <td><%= link_to "Destroy",book_path(@showbook), method: :delete,class:"btn btn-sm btn-danger" %></td>
-       <% end %>
+        <% end %>
       </tr>
      </tbody>
     </table>
