@@ -7,16 +7,14 @@ Rails.application.routes.draw do
   resources :book_comments, only: [:create, :destroy]
   end
   resources :users, only: [:index, :show, :edit, :update]
-  
-  
-  
+
   resources :users do
     member do
       get :followings, :followers # 今回追加したルーティング
     end
   end
-  
-  post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
-  post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
-  
+
+  post 'follow/:id' => 'relationships#create', as: 'follow' # フォローする
+  delete 'unfollow/:id' => 'relationships#destroy', as: 'unfollow' # フォロー外す
+
 end
