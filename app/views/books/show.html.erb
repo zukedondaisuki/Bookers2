@@ -26,13 +26,13 @@
            ♥<%= @showbook.favorites.count %>
            <% end %>
           </p>
-           <% else %>
+          <% else %>
           <p>
            <%= link_to book_favorites_path(@showbook), method: :post do %>
            ♡<%= @showbook.favorites.count %>
            <% end %>
           </p>
-           <% end %>
+          <% end %>
        </td>
        <td>コメント数：<%= @showbook.book_comments.count %></td>
        <% if @showbook.user == current_user %>

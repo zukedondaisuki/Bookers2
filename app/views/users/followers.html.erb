@@ -13,7 +13,7 @@
    <% if @user.followed.count == 0 %>
        <tr>
          <td>フォローしているユーザーはいません</td>
-      </tr>
+       </tr>
    <% else %>
      <% @followers.each do |user| %>
        <tr>
@@ -29,3 +29,4 @@
    </table>
   </div>
 </div>
+
