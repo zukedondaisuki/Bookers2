@@ -18,7 +18,7 @@
      </tr>
     </tbody>
    </table>
-   
+
     <% unless user == current_user %>
          <% unless user == current_user %>
            <% if current_user.following?(user) %>
@@ -33,7 +33,7 @@
            <i class="btn btn-outline-secondary btn-block"><i class="fas fa-user-cog" ></i></i>
          </div>
          <% end %>
-    <% end %> 
+    <% end %>
        <h2 class="mt-3">New book</h2>
        <%= form_with model: book, local:true do |f| %>
         <div class="form-group">
