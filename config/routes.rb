@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show, :edit, :update]
 
-  get "search" => "searches#search"
+  get "search" => "search#search"
 
   resources :users do
     member do
