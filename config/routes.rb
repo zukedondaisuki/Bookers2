@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   resources :users do
     member do
-      get :followings, :followers # 今回追加したルーティング
+      get :followings, :followers
     end
   end
 

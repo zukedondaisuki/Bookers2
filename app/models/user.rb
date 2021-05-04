@@ -33,7 +33,7 @@ class User < ApplicationRecord
   validates :introduction, length: { maximum: 50 }
   
   
-  
+  # 検索方法分岐
   def self.looks(search, word)
     if search == "perfect_match"
       @user = User.where("name LIKE?", "#{word}")

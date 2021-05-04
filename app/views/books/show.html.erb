@@ -2,7 +2,7 @@
   <div class="row">
 
    <div class="col-md-3">
-    <%= render 'books/list', user: @user, book: @book %>
+    <%= render 'books/list', user: @user, book: @book_new %>
    </div>
 
 
@@ -13,37 +13,25 @@
       <tr>
        <td>
         <%= link_to user_path(@user) do %>
-        <%= attachment_image_tag @showbook.user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg" %><br>
+        <%= attachment_image_tag @book.user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg" %><br>
         <% end %>
         <%= link_to @user.name, user_path(@user) %>
        </td>
-       <td><%= link_to @showbook.title, book_path(@showbook) %></td>
-       <td><%= @showbook.body %></td>
-       <td>
-          <% if @showbook.favorited_by?(current_user) %>
-          <p>
-           <%= link_to book_favorites_path(@showbook), method: :delete do %>
-           ♥<%= @showbook.favorites.count %>
-           <% end %>
-          </p>
-          <% else %>
-          <p>
-           <%= link_to book_favorites_path(@showbook), method: :post do %>
-           ♡<%= @showbook.favorites.count %>
-           <% end %>
-          </p>
-          <% end %>
+       <td><%= link_to @book.title, book_path(@book) %></td>
+       <td><%= @book.body %></td>
+       <td class="favorite-buttons_<%= @book.id %>">
+          <%= render 'favorites/favorites', book: @book %>
        </td>
-       <td>コメント数：<%= @showbook.book_comments.count %></td>
-       <% if @showbook.user == current_user %>
-       <td><%= link_to "Edit", edit_book_path(@showbook),class:"btn btn-sm btn-success" %></td>
-       <td><%= link_to "Destroy",book_path(@showbook), method: :delete,class:"btn btn-sm btn-danger" %></td>
+       <td>コメント数：<%= @book.book_comments.count %></td>
+       <% if @book.user == current_user %>
+       <td><%= link_to "Edit", edit_book_path(@book),class:"btn btn-sm btn-success" %></td>
+       <td><%= link_to "Destroy",book_path(@book), method: :delete,class:"btn btn-sm btn-danger" %></td>
         <% end %>
       </tr>
      </tbody>
     </table>
 
-           <% @showbook.book_comments.each do |book_comment| %>
+           <% @book.book_comments.each do |book_comment| %>
            <%= link_to user_path(book_comment.user.id) do %>
            <p><%= attachment_image_tag book_comment.user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg" %></p>
            <%= book_comment.user.name %>
@@ -54,13 +42,13 @@
            <% end %>
            <% end %>
 
-             <% if @showbook.errors.any? %>
-             <%= @showbook.errors.count %>error prohibited this obj from being saved:
-             <% @showbook.errors.full_messages.each do |message| %>
+             <% if @book.errors.any? %>
+             <%= @book.errors.count %>error prohibited this obj from being saved:
+             <% @book.errors.full_messages.each do |message| %>
              <%= message %>
              <% end %>
              <% end %>
-           <%= form_with(model:[@showbook, @book_comment], local: true) do |f| %>
+           <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
            <%= f.text_area :comment, rows:'5' %>
            <%= f.submit "送信" %>
            <% end %>
