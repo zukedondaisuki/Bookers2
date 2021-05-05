@@ -1,0 +1,2 @@
+$(".destroy-comment-button").html("<%= j(render 'book_comments/book_comments', book_comments: @book.book_comments ) %>");
+$(".count").html("<%= j(render 'book_comments/book_count', book: @book) %>");
