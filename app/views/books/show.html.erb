@@ -33,7 +33,7 @@
 
 
           <div class="destroy-comment-button">
-            <%= render 'book_comments/book_comments', book_comments: @book.book_comments %>
+            <%= render 'book_comments/book_comments', book: @book %>
           </div>
 
              <% if @book.errors.any? %>
