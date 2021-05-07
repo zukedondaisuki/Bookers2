@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chats/show'
   root to: 'homes#top'
   get 'home/about' => 'homes#about'
   devise_for :users, controllers: {
@@ -22,5 +23,9 @@ Rails.application.routes.draw do
 
   post 'follow/:id' => 'relationships#create', as: 'follow' # フォローする
   delete 'unfollow/:id' => 'relationships#destroy', as: 'unfollow' # フォロー外す
+
+
+  get 'chats/:id', to: 'chats#show', as: 'chat'
+  resources :chats, only: [:create]
 
 end
