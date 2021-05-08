@@ -6,7 +6,7 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
+    <%= f.text_field :name, autofocus: true, class: "name" %>
   </div>
 
   <div class="field">
@@ -22,7 +22,6 @@
   <div class="field">
     <%= f.label :prefecture_code %><br>
     <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :name, :name %>
-
   </div>
 
   <div class="field">
