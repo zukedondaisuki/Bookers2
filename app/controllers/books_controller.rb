@@ -9,6 +9,7 @@ class BooksController < ApplicationController
     else
       @books = Book.all
       @user = current_user
+      @all_ranks = Book.find(Favorite.group(:book_id).order('count(book_id) desc').limit(5).pluck(:book_id))
       render :index
     end
   end

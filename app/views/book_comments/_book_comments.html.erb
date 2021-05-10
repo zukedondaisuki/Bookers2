@@ -1,10 +1,18 @@
-           <% book.book_comments.each do |book_comment| %>
-           <%= link_to user_path(book_comment.user.id) do %>
-           <p><%= attachment_image_tag book_comment.user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg" %></p>
-           <%= book_comment.user.name %>
+           <table>
+            <tr>
+              <% book.book_comments.each do |book_comment| %>
+             <td>
+               <%= link_to user_path(book_comment.user.id) do %>
+               <p><%= attachment_image_tag book_comment.user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg" %></p>
+                  <%= book_comment.user.name %>
+               <% end %>
+             </td>
+             <td><%= book_comment.comment %></td>
+             <td>
+               <% if book_comment.user == current_user %>
+                <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), class: 'btn-sm btn-danger', method: :delete, remote: true %>
+               <% end %>
+             </td>
+           </tr>
            <% end %>
-           <%= book_comment.comment %>
-           <% if book_comment.user == current_user %>
-           <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, remote: true %>
-           <% end %>
-           <% end %>
+           </table>

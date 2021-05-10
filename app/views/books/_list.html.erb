@@ -26,16 +26,13 @@
      </tr>
     </tbody>
    </table>
-
       <% unless user == current_user %>
            <% if current_user.following?(user) %>
-              <%= link_to 'フォロー外す', unfollow_path(user.id), method: :DELETE %>
+              <%= link_to 'フォロー外す', unfollow_path(user.id), method: :DELETE,class:"btn btn-success" %>
            <% else %>
-              <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+              <%= link_to 'フォローする', follow_path(user.id), method: :POST,class:"btn btn-success" %>
            <% end %>
-          
-              <%= link_to 'Chatを始める', chat_path(user.id) %>
-            
+          <%= link_to 'Chatを始める', chat_path(user.id) %>
       <% else %>
            <%= link_to edit_user_path(user) do %>
             <div class="row">
